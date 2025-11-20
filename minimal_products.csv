@@ -1,0 +1,6 @@
+name,sku,category,price,quantity
+Laptop,LAP-001,Electronics,999,50
+Mouse,MOU-001,Electronics,25,100
+Keyboard,KEY-001,Electronics,75,80
+Monitor,MON-001,Electronics,250,30
+Desk,DSK-001,Furniture,300,15

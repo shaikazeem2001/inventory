@@ -1,0 +1,6 @@
+name,sku,category,price,quantity,description,imageUrl
+Sample Laptop,LAPTOP-001,Electronics,999.99,50,High-performance laptop for work and gaming,https://via.placeholder.com/300
+Gaming Mouse,MOUSE-001,Electronics,49.99,100,RGB gaming mouse with 12000 DPI,https://via.placeholder.com/300
+Office Chair,CHAIR-001,Home,299.99,25,Ergonomic office chair with lumbar support,https://via.placeholder.com/300
+Programming Book,BOOK-001,Books,39.99,200,Learn JavaScript the modern way,https://via.placeholder.com/300
+Action Figure,TOY-001,Toys,19.99,150,Collectible superhero action figure,https://via.placeholder.com/300
