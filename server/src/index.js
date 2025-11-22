@@ -37,7 +37,8 @@ app.use('/api/logs', require('./routes/logRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
 const PORT = process.env.PORT || 5200;
+const HOST = '0.0.0.0'; // Railway requires binding to 0.0.0.0
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on ${HOST}:${PORT}`);
 });
