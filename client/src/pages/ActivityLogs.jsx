@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { toast } from 'react-toastify';
+import PageTransition from '../components/PageTransition';
 
 export default function ActivityLogs() {
   const { user } = useAuth();
@@ -52,7 +53,8 @@ export default function ActivityLogs() {
   }
 
   return (
-    <div className="space-y-6">
+    <PageTransition>
+      <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Activity Logs</CardTitle>
@@ -105,6 +107,7 @@ export default function ActivityLogs() {
           </Table>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

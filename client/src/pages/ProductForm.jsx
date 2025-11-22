@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from 'react-toastify';
 import { Upload, FileSpreadsheet } from 'lucide-react';
+import PageTransition from '../components/PageTransition';
 
 export default function ProductForm() {
   const { id } = useParams();
@@ -99,7 +100,8 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <PageTransition>
+      <div className="max-w-2xl mx-auto">
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -237,6 +239,7 @@ export default function ProductForm() {
           </form>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

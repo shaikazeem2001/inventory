@@ -13,6 +13,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Package, AlertTriangle, DollarSign, TrendingUp, LogOut, User, Shield } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
+import ThemeToggle from '../components/ThemeToggle';
+import PageTransition from '../components/PageTransition';
+import { motion } from 'framer-motion';
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -72,10 +75,13 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-        <DropdownMenu>
+    <PageTransition>
+      <div className="space-y-8">
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Card className="px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
               <div className="flex items-center gap-3">
@@ -115,94 +121,118 @@ export default function Dashboard() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
+          </div>
+        </div>
       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Products</CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.totalProducts}</div>
-            <p className="text-xs text-muted-foreground">
-              +20.1% from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">{stats.lowStock}</div>
-            <p className="text-xs text-muted-foreground">
-              Products need reordering
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Value</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${stats.totalValue.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
-              +15% from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">+573</div>
-            <p className="text-xs text-muted-foreground">
-              +201 since last hour
-            </p>
-          </CardContent>
-        </Card>
+        <motion.div whileHover={{ y: -4, transition: { duration: 0.2 } }}>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Products</CardTitle>
+              <Package className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.totalProducts}</div>
+              <p className="text-xs text-muted-foreground">
+                +20.1% from last month
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+        <motion.div whileHover={{ y: -4, transition: { duration: 0.2 } }}>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
+              <AlertTriangle className="h-4 w-4 text-red-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-red-600">{stats.lowStock}</div>
+              <p className="text-xs text-muted-foreground">
+                Products need reordering
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+        <motion.div whileHover={{ y: -4, transition: { duration: 0.2 } }}>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Value</CardTitle>
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${stats.totalValue.toLocaleString()}</div>
+              <p className="text-xs text-muted-foreground">
+                +15% from last month
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+        <motion.div whileHover={{ y: -4, transition: { duration: 0.2 } }}>
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">+573</div>
+              <p className="text-xs text-muted-foreground">
+                +201 since last hour
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Top Products by Quantity</CardTitle>
-          </CardHeader>
-          <CardContent className="pl-2">
-            <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.topProducts}>
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="#888888" 
-                    fontSize={12} 
-                    tickLine={false} 
-                    axisLine={false} 
-                  />
-                  <YAxis 
-                    stroke="#888888" 
-                    fontSize={12} 
-                    tickLine={false} 
-                    axisLine={false} 
-                    tickFormatter={(value) => `${value}`} 
-                  />
-                  <Tooltip 
-                    cursor={{ fill: 'transparent' }}
-                    contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: 'var(--radius)' }}
-                  />
-                  <Bar dataKey="quantity" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="col-span-3">
+        <motion.div
+          className="col-span-4"
+          whileHover={{ y: -2, transition: { duration: 0.2 } }}
+        >
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle>Top Products by Quantity</CardTitle>
+            </CardHeader>
+            <CardContent className="pl-2">
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={stats.topProducts}>
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <XAxis 
+                      dataKey="name" 
+                      stroke="#888888" 
+                      fontSize={12} 
+                      tickLine={false} 
+                      axisLine={false} 
+                    />
+                    <YAxis 
+                      stroke="#888888" 
+                      fontSize={12} 
+                      tickLine={false} 
+                      axisLine={false} 
+                      tickFormatter={(value) => `${value}`} 
+                    />
+                    <Tooltip 
+                      cursor={{ fill: 'transparent' }}
+                      contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: 'var(--radius)' }}
+                    />
+                    <Bar 
+                      dataKey="quantity" 
+                      fill="hsl(var(--primary))" 
+                      radius={[4, 4, 0, 0]}
+                      animationBegin={0}
+                      animationDuration={800}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+        <motion.div
+          className="col-span-3"
+          whileHover={{ y: -2, transition: { duration: 0.2 } }}
+        >
+          <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle>Category Distribution</CardTitle>
           </CardHeader>
@@ -219,6 +249,9 @@ export default function Dashboard() {
                     fill="#8884d8"
                     paddingAngle={5}
                     dataKey="value"
+                    animationBegin={0}
+                    animationDuration={800}
+                    isAnimationActive={true}
                   >
                     {stats.categoryData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -232,8 +265,10 @@ export default function Dashboard() {
               </ResponsiveContainer>
             </div>
           </CardContent>
-        </Card>
+          </Card>
+        </motion.div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

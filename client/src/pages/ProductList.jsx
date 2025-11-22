@@ -53,6 +53,7 @@ import {
   Trash2, 
   FileText 
 } from 'lucide-react';
+import PageTransition from '../components/PageTransition';
 
 export default function ProductList() {
   const { user } = useAuth();
@@ -151,7 +152,8 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="space-y-6">
+    <PageTransition>
+      <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Products</h2>
@@ -355,6 +357,7 @@ export default function ProductList() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </PageTransition>
   );
 }
