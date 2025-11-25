@@ -19,7 +19,7 @@ export default function Login() {
     if (isLogin) {
       result = await login(data.username, data.password);
     } else {
-      result = await registerUser(data.username, data.password);
+      result = await registerUser(data.username, data.email, data.password);
     }
 
     if (result.success) {
@@ -48,6 +48,23 @@ export default function Login() {
               />
               {errors.username && <p className="text-sm text-red-500">{errors.username.message}</p>}
             </div>
+            {!isLogin && (
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  {...register('email', { 
+                    required: !isLogin && 'Email is required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Invalid email address'
+                    }
+                  })}
+                />
+                {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
